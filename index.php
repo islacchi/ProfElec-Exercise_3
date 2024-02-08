@@ -28,7 +28,7 @@
                 <h2> <i class="fa-solid fa-question"></i> Info</h2>
                 <h3>Tags</h3>
                 <ul>
-                    <li>medthod: POST</li>
+                    <li>method: POST</li>
                     <li>Mandatory Fields</li>
                     <li>Standard Field: text and password</li>
                     <li>Checkbox: Checkbox</li>
@@ -83,7 +83,7 @@
                 <h2> <i class="fa-solid fa-question"></i> Info</h2>
                 <h3>Tags</h3>
                 <ul>
-                    <li>medthod: POST</li>
+                    <li>method: POST</li>
                     <li>Mandatory Fields</li>
                     <li>File sending</li>
                     <li>Standard Field: textc email, date, file and password</li>
@@ -190,13 +190,13 @@
             <br><br><br><hr><br><br>
         </section>
 
-        <!-- Third  SECTION -->
+        <!-- THIRD  SECTION -->
         <section>
             <aside>
                 <h2> <i class="fa-solid fa-question"></i> Info</h2>
                 <h3>Tags</h3>
                 <ul>
-                    <li>medthod: POST</li>
+                    <li>method: POST</li>
                     <li>Mandatory Fields</li>
                     <li>Placeholder attribute</li>
                     <li>Maxlength abd minlength attritbutes</li>
