@@ -73,7 +73,8 @@
                     </ul>
                 </div>
             <?php } ?>
-            <br><br><br><hr><br><br>
+            <br><br><br>
+            <hr><br><br>
         </section>
 
 
@@ -162,32 +163,48 @@
                 </form>
             </article>
 
+            <?php if (!empty($_POST) && $_POST['form'] === "Register") { ?>
+                <div class="result">
+                    <b>Values returned by the form:</b><br>
+                    <ul>
+                        <?php foreach ($_POST as $key => $value) {
+                            echo '<li>' . $key . ' => ' . $value . '</li>';
+                        } ?>
+                    </ul>
+                    <?php
+                    if (!empty($_POST) && $_POST['form'] === "Register" && isset($_FILES['myfile']) && $_FILES['myfile']['error'] === UPLOAD_ERR_OK) {
 
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (!isset($_POST['tos']) || empty($_POST['tos'])) {
-                    echo '<div class="error">Please accept the Terms of Service</div>';
-                } else {
-                    // Proceed with form submission
-                    echo '<div class="result">';
-                    echo '<b>Values returned by the form:</b><br>';
-                    echo '<ul>';
-                    foreach ($_POST as $key => $value) {
-                        if ($key === 'myfile') {
-                            // Check if file was uploaded successfully
-                            if ($_FILES['myfile']['error'] === 0) {
-                                echo '<li>' . $key . ' => ' . $_FILES['myfile']['name'] . '</li>';
+                        $imageTmpName = $_FILES['myfile']['tmp_name'];
+                        $imageName = $_FILES['myfile']['name'];
+                        $imageType = $_FILES['myfile']['type'];
+                        $imageSize = $_FILES['myfile']['size'];
+
+                        // Check the file type
+                        if (getimagesize($imageTmpName) !== false) {
+                            $uploadDirectory = 'uploads/';
+                            if (!file_exists($uploadDirectory)) {
+                                mkdir($uploadDirectory, 0777, true);
+                            }
+                            // Move uploaded file to directory
+                            if (move_uploaded_file($imageTmpName, $uploadDirectory . $imageName)) {
+                                echo '<div id="imageView">';
+                                echo '<p>Uploaded Image:</p>';
+                                echo '<img src="' . $uploadDirectory . $imageName . '" alt="' . $imageName . '" style="max-width: 250px;">';
+                                echo '</div>';
+                            } else {
+                                echo 'Failed to move the uploaded file.';
                             }
                         } else {
-                            echo '<li>' . $key . ' => ' . $value . '</li>';
+                            echo 'File is not an image.';
                         }
+                    } elseif (!empty($_FILES['myfile'])) {
+                        echo 'Error uploading file. Error code: ' . $_FILES['myfile']['error'];
                     }
-                    echo '</ul>';
-                    echo '</div>';
-                }
-            }
-            ?>
-            <br><br><br><hr><br><br>
+                    ?>
+                </div>
+            <?php } ?>
+            <br><br><br>
+            <hr><br><br>
         </section>
 
         <!-- THIRD  SECTION -->
@@ -212,7 +229,7 @@
                     <div>
                         <div>
                             <label>Department you wish to contact: <span class="mandatory">*</span></label>
-                            <select name="department" >
+                            <select name="department">
                                 <option>Select...</option>
                                 <option>Sales Department</option>
                                 <Option>Communication Department</Option>
@@ -221,7 +238,7 @@
                         </div>
                         <div>
                             <label>Enter a <span>Title</span>:<span class="mandatory">*</span></label>
-                            <input type="text" name="title" minlength="20" placeholder="More than 20 characters" >
+                            <input type="text" name="title" minlength="20" placeholder="More than 20 characters">
                         </div>
 
                         <div>
@@ -242,14 +259,6 @@
                 </form>
             </article>
         </section>
-
-
-
-
     </div>
-
 </body>
-
-
-
 </html>
