@@ -221,17 +221,17 @@
                         </div>
                         <div>
                             <label>Enter a <span>Title</span>:<span class="mandatory">*</span></label>
-                            <input type="text" name="question">
+                            <input type="text" name="title" minlength="20" placeholder="More than 20 characters" >
                         </div>
 
                         <div>
                             <label>Enter your <span>Question</span>:<span class="mandatory">*</span></label>
-                            <textarea class="vertical-top"></textarea>
+                            <textarea class="vertical-top" maxlength="1000" placeholder="Maximum 1000 characters..."></textarea>
                         </div>
 
                         <div>
                             <label>Enter your <span>Email address</span>:<span class="mandatory">*</span></label>
-                            <input type="email" name="contactemail">
+                            <input type="email" name="contactemail" placeholder="Your Email...">
                         </div>
                     </div>
 
